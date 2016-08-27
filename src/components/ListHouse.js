@@ -63,6 +63,11 @@ export default class ListHouse extends Component {
 
     })
   }
+
+  deleteHouse(e){
+    console.log("Delete Me" + e.target.id);
+    BuyerActions.deleteHouse(e.target.id);
+  }
   render() {
     let { _id, address, sqft, beds, baths, picture, price, location,zipcode }  = this.props;
     if(this.state.editing){
@@ -71,9 +76,9 @@ export default class ListHouse extends Component {
           <td><input type="text" value = {this.state.editPicture} onChange ={e=>this.setState({editPicture:e.target.value})}/></td>
           <td><input type="text" value = {this.state.editAddress} onChange ={e=>this.setState({editAddress:e.target.value})}/></td>
           <td><input type="text" value = {this.state.editZipcode} onChange ={e=>this.setState({editZipcode:e.target.value})}/></td>
-          <td><input type="text" value = {this.state.editSqft} onChange ={e=>this.setState({editSqft:e.target.value})}/></td>
-          <td><input type="text" value = {this.state.editBeds} onChange ={e=>this.setState({editBeds:e.target.value})}/></td>
-          <td><input type="text" value = {this.state.editBaths}onChange ={e=>this.setState({editBaths:e.target.value})} /></td>
+          <td><input type="number" value = {this.state.editSqft} onChange ={e=>this.setState({editSqft:e.target.value})}/></td>
+          <td><input type="number" value = {this.state.editBeds} onChange ={e=>this.setState({editBeds:e.target.value})}/></td>
+          <td><input type="number" value = {this.state.editBaths}onChange ={e=>this.setState({editBaths:e.target.value})} /></td>
           <td><input type="text" value = {this.state.editPrice} onChange ={e=>this.setState({editPrice:e.target.value})}/></td>
       
           <td><button id ={_id} className='btn btn-default btn-xs' onClick={this.saveMe}>
@@ -103,6 +108,9 @@ export default class ListHouse extends Component {
           </button>
             <button id = {_id} className="btn btn-primary btn-xs" onClick={this.editHouse}>
             <span className="glyphicon glyphicon-pencil"></span>
+          </button>
+               <button id = {_id} className="btn btn-danger btn-xs" onClick={this.deleteHouse}>
+            <span className="glyphicon glyphicon-remove"></span>
           </button>
         </td>
       </tr>

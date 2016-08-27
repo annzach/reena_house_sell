@@ -12,6 +12,7 @@ const BuyerActions = {
   },
   deleteHouse(id){
     API.deleteHouse(id);
+    API.getAllHouses();
   }
 }
 

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import BuyerActions from '../actions/BuyerActions';
+import {browserHistory} from 'react-router'
 
 export default class HouseSell extends Component{
 
@@ -47,6 +48,7 @@ export default class HouseSell extends Component{
     BuyerActions.createHouse(house)
     this.setState({house:''});
     this.resetForm();
+    browserHistory.push('/buy');
   }
 
   render(){
