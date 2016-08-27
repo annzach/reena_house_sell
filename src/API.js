@@ -23,7 +23,7 @@ const API = {
   editHouse(id, house){
     axios.put(`/api/houses/${id}`, house)
       .then(res => res.data)
-      .then(ServerActions.receiveHouses)
+      .then(ServerActions.editHouse)
       .catch(console.error);
   },
   deleteHouse(id) {

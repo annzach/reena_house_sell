@@ -10,6 +10,7 @@ const ClientActions = {
   },
   editClient(id, client){
     API.editClient(id, client);
+    
   },
   deleteClient(id){
     API.deleteClient(id);

@@ -6,7 +6,7 @@ router.route('/')
   .get((req, res)=>{
     House.find({}, (err, houses)=>{
       res.status(err ? 400 :200).send(err || houses);
-    }).populate('owner')
+    })
   })
   .post((req, res)=>{
     House.create(req.body, (err, house)=>{

@@ -30,6 +30,13 @@ const ServerActions = {
       type: 'RECEIVE_ONE_ANIMAL',
       animal
     })
+  },
+  editHouse(data){
+    AppDispatcher.dispatch({
+      type: 'EDIT_HOUSE',
+      data
+    })
+
   }
 }
 

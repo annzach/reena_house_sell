@@ -19,6 +19,10 @@ class HouseStore extends EventEmitter {
           _houses.push(house);
           this.emit('CHANGE');
           break;
+        case 'EDIT_HOUSE':
+            this.emit('CHANGE');
+            break;
+
         // case 'RECEIVE_LOOKUP_PEOPLE':
         //   _houses = action.house;
         //   this.emit('CHANGE');

@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import BuyerActions from '../actions/BuyerActions'
+import {browserHistory} from 'react-router'
 
 export default class ListHouse extends Component {
-  constructor(props){
-    super(props);
+  constructor(){
+    super();
     this.orderHouse = this.orderHouse.bind(this);
     this.editHouse=this.editHouse.bind(this);
+    this.saveMe=this.saveMe.bind(this);
 
     this.state = {
       editing:null,
@@ -22,8 +25,27 @@ export default class ListHouse extends Component {
 
   }
 
-  saveMe(){
-    console.log("Please save me");
+  saveMe(e){
+    console.log("Please save me" + e.target.id);
+    let new_id = this.props._id;
+    console.log("new_id",new_id);
+    let new_picture =this.state.editPicture
+    let new_address =this.state.editAddress
+    let new_location =this.state.editLocation
+    let new_baths=this.state.editBaths
+    let new_sqft =this.state.editSqft;
+    let new_zipcode =this.state.editZipcode;
+    let new_beds =this.state.editBeds;
+    let new_price = this.state.editPrice;
+    let new_obj = {picture:new_picture  ,address:new_address,location:new_location,
+                   baths:new_baths,sqft:new_sqft,zipcode:new_zipcode,beds:new_beds,
+                   price:new_price }
+    console.log(new_obj);
+   BuyerActions.editHouse(new_id,new_obj);
+   this.setState({editing:null});
+   //browserHistory.push('/buy')
+
+
   }
 
   editHouse(e){
@@ -38,6 +60,7 @@ export default class ListHouse extends Component {
       editBeds:this.props.beds,
       editBaths:this.props.baths,
       editPrice:this.props.price
+
     })
   }
   render() {
@@ -51,9 +74,9 @@ export default class ListHouse extends Component {
           <td><input type="text" value = {this.state.editSqft} onChange ={e=>this.setState({editSqft:e.target.value})}/></td>
           <td><input type="text" value = {this.state.editBeds} onChange ={e=>this.setState({editBeds:e.target.value})}/></td>
           <td><input type="text" value = {this.state.editBaths}onChange ={e=>this.setState({editBaths:e.target.value})} /></td>
-          <td><input type="text" value = {this.state.editPrice} onChange ={e=>this.setState({editPrice:target.value})}/></td>
+          <td><input type="text" value = {this.state.editPrice} onChange ={e=>this.setState({editPrice:e.target.value})}/></td>
       
-          <td><button id ={_id} className='btn btn-default btn-xs' onClick={this.SaveMe}>
+          <td><button id ={_id} className='btn btn-default btn-xs' onClick={this.saveMe}>
               <span className='glyphicon glyphicon-ok'></span>
               </button>
               <button id ={_id} className='btn btn-default btn-xs'>
@@ -68,7 +91,7 @@ export default class ListHouse extends Component {
     return(
       <tr className='trFont' key={_id}>
         <td><img src={picture} width="300 px" alt="No Image"/></td>
-        <td>{address}<br/>{location}</td>
+        <td>{address}{location}</td>
         <td>{zipcode}</td>
         <td>{sqft}</td>
         <td>{beds}</td>
